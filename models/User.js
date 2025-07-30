@@ -27,7 +27,7 @@ const userSchema = new Schema(
             default: "member"
         }
     },
-    { timestamp: true}
+    { timestamps: true}
 );
 
 //create the user model for the users collection

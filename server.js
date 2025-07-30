@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import db from "./config/connection.js";
 import mongoose from 'mongoose';
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "../backend/routes/userRoutes.js"
+
 
 dotenv.config();
 
@@ -17,10 +20,13 @@ app.use(cors({ origin: process.env.CLIENT_URL || "*", //This sets which frontend
     })
 );
 
+//Middleware
+app.use(express.json())
+
 
 // Routes
-//app.use("/api/auth", authRoutes);
-//app.use("/api/users", userRoutes)
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes)
 //app.use("/api/task", taskRoutes);
 //app.use("/api/reports", reportRoutes);
 
