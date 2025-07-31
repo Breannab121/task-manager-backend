@@ -7,7 +7,7 @@ const todoSchema = new Schema(
             required: true
         },
         completed: {
-    type: Boolean,
+            type: Boolean,
             default: false,
         }
     }
@@ -20,11 +20,12 @@ const taskSchema = new Schema(
             required: true
         },
         description: {
-            type: Boolean,
+            type: String,
         },
         priority: {
             type: String,
-            enum: ["Low", "Medium", "High"], dafault: "Medium"
+            enum: ["Low", "Medium", "High"], 
+            default: "Medium"
         },
         status: {
             type: String,
