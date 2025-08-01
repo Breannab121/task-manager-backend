@@ -4,8 +4,8 @@ import cors from "cors";
 import db from "./config/connection.js";
 import mongoose from 'mongoose';
 import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "../backend/routes/userRoutes.js"
-import taskRoutes from "../backend/routes/taskRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
+import taskRoutes from "./routes/taskRoutes.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
 
