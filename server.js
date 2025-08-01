@@ -18,7 +18,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middleware for CORS
-app.use(cors({ origin: process.env.CLIENT_URL || "*", //This sets which frontend is allowed to talk to your backend.
+app.use(cors({ origin: "*", //This sets which frontend is allowed to talk to your backend.
                 methods: ["GET" , "POST", "PUT", "DELETE"], //This restricts the types of HTTP requests allowed from the frontend to these four common ones.
                 allowedHeaders: ["Content-Type", "Authorization"], //This tells the browser it’s okay to send these headers in a request.
     })
