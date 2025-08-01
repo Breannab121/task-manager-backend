@@ -81,17 +81,18 @@ export const getTask = async (req, res) => {
 //@route GET /api/tasks/:id
 //@access Private
 export const getTaskById = async (req, res) => {
-    try {
-        const  task = await Tasks.findById(req.params.id).populate(
-          "assignedTo",
-        "name email profileImageUrl"
-      );
+  try {
+    const task = await Task.findById(req.params.id).populate(
+      "assignedTo",
+      "name email profileImageUrl"
+    );
 
-      if (!task) return res.status(404).json({ message: "Tasks not found"})
-        res.json(task);
-     } catch (error) {
-            res.status(500).json({ message: "Server error", error: error.message })
-        }};
+    if (!task) return res.status(404).json({ message: "Task not found" });
+    res.json(task);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
 
 
 //@desc Create a new task (admin only)
@@ -137,9 +138,9 @@ export const createTask = async (req, res) => {
 //@route PUT /api/tasks/:id
 //@access Private
 export const updateTask = async (req, res) => {
-   try {
-     const tasks = await Task.findById(req.params.id);
-    if (!tasks) return res.status(404).json ({ message: "Task not found" });
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).json({ message: "Task not found" });
 
     task.title = req.body.title || task.title;
     task.description = req.body.description || task.description;
@@ -149,19 +150,19 @@ export const updateTask = async (req, res) => {
     task.attachments = req.body.attachments || task.attachments;
 
     if (req.body.assignedTo) {
-        if (!Array.isArray(req.body.assignTO)) {
-            return res
-            .status(400)
-            .json({ message: " assignedTo must be an array of user IDs"})
-        }
-        task.assignedTo = req.body.assignedTo;
+      if (!Array.isArray(req.body.assignedTo)) {
+        return res
+          .status(400)
+          .json({ message: "assignedTo must be an array of user IDs" });
+      }
+      task.assignedTo = req.body.assignedTo;
     }
-    const updatedTask = await task.save();
-    res.json({ message: "Task updated successfully", updatedTask})
 
-     } catch (error) {
-            res.status(500).json({ message: "Server error", error: error.message })
-        }
+    const updatedTask = await task.save();
+    res.json({ message: "Task updated successfully", updatedTask });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 //@desc  Delete a task (admin Only)

@@ -10,7 +10,7 @@ router.get("/dashboard-data", protect, getDashboardData);
 router.get("/user-dashboard-data", protect, getUserDashboardData);
 router.get("/", protect, getTask); //Get all task (Admin: all, User: assigned)
 router.get("/:id", protect, getTaskById); // Get task by Id
-
+    
 router.post("/", protect, adminOnly, createTask); // Create a task (admin only)
 
 router.put("/:id", protect, updateTask); // Update task details

@@ -78,6 +78,7 @@ export const loginUser = async (req, res) => {
 
         //Return user data with JWT (token)
         res.json({
+            token: generateToken(user._id),
             _id: user.id,
             name: user.name,
             email: user.email, 

@@ -6,14 +6,16 @@ import mongoose from 'mongoose';
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "../backend/routes/userRoutes.js"
 import taskRoutes from "../backend/routes/taskRoutes.js"
-import reportRoutes from "../backend/routes/reportRoutes.js"
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
 const app = express();
 const PORT = 3000
 const uri = process.env.MONGO_URI;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware for CORS
 app.use(cors({ origin: process.env.CLIENT_URL || "*", //This sets which frontend is allowed to talk to your backend.
@@ -30,7 +32,10 @@ app.use(express.json())
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes)
 app.use("/api/tasks", taskRoutes);
-app.use("/api/reports", reportRoutes);
+
+
+//Serve upload folder
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 
 // Connect to MongoDB and handle the promise
 mongoose.connect(uri)
