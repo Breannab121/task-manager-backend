@@ -1,7 +1,7 @@
 # Pro-Tasker Backend
 
 This is the backend for **Pro-Tasker**, a full-stack task management app built with the MERN stack (MongoDB, Express.js, React.js, Node.js).
-It supports user authentication, project and task CRUD operations, secure role-based access, and collaboration support for small teams.
+It supports user authentication, project and task CRUD operations, secure role-based access, and collaboration support for teams.
 
 ---
 
